@@ -1,5 +1,6 @@
 package ca.cinderblok.lineranker;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,7 +10,13 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import ca.cinderblok.lineranker.DAL.LineDbContract;
+import ca.cinderblok.lineranker.DAL.LineDbHelper;
+
 public class MainActivity extends AppCompatActivity {
+
+    LineDbHelper mDbHelper;
+    SQLiteDatabase mDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +33,21 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        mDbHelper = new LineDbHelper(this, LineDbContract.DATABASE_NAME, null, LineDbContract.DATABASE_VERSION);
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mDb = mDbHelper.getWritableDatabase();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mDb.close();
     }
 
     @Override
