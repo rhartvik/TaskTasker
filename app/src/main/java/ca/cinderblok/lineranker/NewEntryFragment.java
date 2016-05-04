@@ -35,16 +35,14 @@ public abstract class NewEntryFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
-        final View v = getActivity().getLayoutInflater().inflate(getViewId(), null);
-
-        builder.setView(v)
+        builder.setView(getViewId())
             .setTitle(getTitleStringId())
             .setView(getViewId())
             .setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    EditText field = (EditText) v.findViewById(getEditTextId());
-                    add(field.getText().toString());
+                    EditText field = (EditText) getDialog().findViewById(getEditTextId());
+                    String input = field.getText().toString();
+                    add(input);
                 }
             })
             .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
