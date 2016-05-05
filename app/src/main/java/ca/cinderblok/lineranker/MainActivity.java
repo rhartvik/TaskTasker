@@ -1,14 +1,17 @@
 package ca.cinderblok.lineranker;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.widget.CursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 import ca.cinderblok.lineranker.DAL.LineDbContract;
 import ca.cinderblok.lineranker.DAL.LineDbHelper;
@@ -44,6 +47,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ListView categoryListView = (ListView) findViewById(R.id.categoryListView);
+        Cursor categoryCursor = mDbHelper.GetCategories();
+        // Setup cursor adapter using cursor from last step
+        CategoryAdapter categoryCursorAdapter = new CategoryAdapter(this.getBaseContext(), categoryCursor, CursorAdapter.NO_SELECTION);
+        // Attach cursor adapter to the ListView
+        categoryListView.setAdapter(categoryCursorAdapter);
     }
 
     @Override
