@@ -16,7 +16,7 @@ import android.widget.ListView;
 import ca.cinderblok.lineranker.DAL.LineDbContract;
 import ca.cinderblok.lineranker.DAL.LineDbHelper;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NewEntryFragment.NewEntryDialogListener {
 
     LineDbHelper mDbHelper;
 
@@ -49,15 +49,19 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
+    private void RefreshList(){
         ListView categoryListView = (ListView) findViewById(R.id.categoryListView);
         Cursor categoryCursor = mDbHelper.GetCategories();
         // Setup cursor adapter using cursor from last step
         CategoryAdapter categoryCursorAdapter = new CategoryAdapter(this.getBaseContext(), categoryCursor, CursorAdapter.NO_SELECTION);
         // Attach cursor adapter to the ListView
         categoryListView.setAdapter(categoryCursorAdapter);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        RefreshList();
     }
 
     @Override
@@ -86,5 +90,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onNewEntryCreation() {
+        RefreshList();
     }
 }
