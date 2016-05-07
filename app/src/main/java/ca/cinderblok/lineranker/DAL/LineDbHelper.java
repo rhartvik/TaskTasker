@@ -57,19 +57,21 @@ public class LineDbHelper extends SQLiteOpenHelper{
 
     public Cursor GetCategories() {
         SQLiteDatabase db = getWritableDatabase();
-        return db.query(LineDbContract.CategoryTable.TABLE_NAME, LineDbContract.CategoryTable.FULL_PROJECTION, null, null, null, null, null);
+        return db.query(
+                LineDbContract.CategoryTable.TABLE_NAME
+                , LineDbContract.CategoryTable.FULL_PROJECTION
+                , null, null, null, null, null);
     }
 
-    public Cursor GetLines(long catagoryId) {
+    public Cursor GetLines(long categoryId) {
         SQLiteDatabase db = getWritableDatabase();
-        // TO DO: Add a sort by rating
         return db.query(
                 LineDbContract.LineTable.TABLE_NAME
                 , LineDbContract.LineTable.FULL_PROJECTION
                 , LineDbContract.LineTable.COLUMN_NAME_CATEGORY + "=?"
-                , new String[] { Long.toString(catagoryId) }
+                , new String[] { Long.toString(categoryId) }
                 , null
                 , null
-                , null);
+                , LineDbContract.LineTable.COLUMN_NAME_RATING + " DESC");
     }
 }
