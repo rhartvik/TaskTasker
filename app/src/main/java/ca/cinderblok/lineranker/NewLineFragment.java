@@ -1,6 +1,8 @@
 package ca.cinderblok.lineranker;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.DatePicker;
 
 import java.util.Date;
@@ -28,15 +30,18 @@ public class NewLineFragment extends NewEntryFragment {
     @Override
     protected long add(String str){
         long categoryId = getArguments().getLong("category");
+        LayoutInflater inflater = LayoutInflater.from(getActivity().getBaseContext());
+        View view = inflater.inflate(getViewId(), null);
 
-        DatePicker datePicker = (DatePicker) getView().findViewById(R.id.datePicker);
+        DatePicker datePicker = (DatePicker) view.findViewById(R.id.datePicker);
         datePicker.getDayOfMonth();
         datePicker.getMonth();
-        ;
+
         String dateString = String.format(getString(R.string.date_format)
                 , datePicker.getYear()
                 , datePicker.getMonth()
                 , datePicker.getDayOfMonth());
+
         return mDbHelper.InsertNewLine(categoryId, str, dateString);
     }
 

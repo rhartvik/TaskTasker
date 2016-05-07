@@ -1,5 +1,6 @@
 package ca.cinderblok.lineranker;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -11,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import ca.cinderblok.lineranker.DAL.LineDbContract;
@@ -19,6 +21,8 @@ import ca.cinderblok.lineranker.DAL.LineDbHelper;
 public class MainActivity extends AppCompatActivity implements NewEntryFragment.NewEntryDialogListener {
 
     LineDbHelper mDbHelper;
+    public static String CATEGORY_ID_EXTRA = "cinderblok.ca.LINE_CATEGORY_ID";
+    public static String STRING_ID_EXTRA = "cinderblok.ca.LINE_CATEGORY_NAME";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,17 @@ public class MainActivity extends AppCompatActivity implements NewEntryFragment.
 
         mDbHelper = new LineDbHelper(this, LineDbContract.DATABASE_NAME, null, LineDbContract.DATABASE_VERSION);
 
+        ListView list = (ListView) findViewById(R.id.listView);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MainActivity.this, LineListActivity.class);
+                intent.putExtra(CATEGORY_ID_EXTRA, id);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -50,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements NewEntryFragment.
     }
 
     private void RefreshList(){
-        ListView categoryListView = (ListView) findViewById(R.id.categoryListView);
+        ListView categoryListView = (ListView) findViewById(R.id.listView);
         Cursor categoryCursor = mDbHelper.GetCategories();
         // Setup cursor adapter using cursor from last step
         CategoryAdapter categoryCursorAdapter = new CategoryAdapter(this.getBaseContext(), categoryCursor, CursorAdapter.NO_SELECTION);
