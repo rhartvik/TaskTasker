@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import ca.cinderblok.lineranker.DAL.LineDbContract;
 import ca.cinderblok.lineranker.DAL.LineDbHelper;
@@ -51,8 +52,12 @@ public class MainActivity extends AppCompatActivity implements NewEntryFragment.
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Cursor c = (Cursor)parent.getItemAtPosition(position);
+                long categoryId = c.getLong(c.getColumnIndexOrThrow(LineDbContract.CategoryTable._ID));
                 Intent intent = new Intent(MainActivity.this, LineListActivity.class);
-                intent.putExtra(CATEGORY_ID_EXTRA, id);
+                intent.putExtra(CATEGORY_ID_EXTRA, categoryId);
+                String categoryName = ((TextView) view.findViewById(R.id.categoryName)).getText().toString();
+                intent.putExtra(STRING_ID_EXTRA, categoryName);
                 startActivity(intent);
             }
         });
