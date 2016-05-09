@@ -22,7 +22,7 @@ public final class LineDbContract {
         };
 
         public static final String SQL_CREATE = "CREATE TABLE " + TABLE_NAME + " ("
-                + _ID + " int primary key, "
+                + _ID + " integer primary key autoincrement not null, "
                 + COLUMN_NAME_NAME + " text)";
 
         public static final String SQL_DELETE = "DROP TABLE IF EXISTS " + CategoryTable.TABLE_NAME;
@@ -46,7 +46,7 @@ public final class LineDbContract {
         };
 
         public static final String SQL_CREATE = "CREATE TABLE " + TABLE_NAME + " ("
-                + _ID + " int primary key, "
+                + _ID + " integer primary key autoincrement not null, "
                 + COLUMN_NAME_CATEGORY + " int, "
                 + COLUMN_NAME_DATE + " int, "
                 + COLUMN_NAME_LINE + " text, "
