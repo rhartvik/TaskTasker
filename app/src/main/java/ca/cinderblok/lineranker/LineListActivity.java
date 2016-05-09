@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.widget.CursorAdapter;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
 
@@ -31,6 +32,8 @@ public class LineListActivity extends AppCompatActivity implements NewEntryFragm
         Intent intent = getIntent();
         categoryId = intent.getLongExtra(MainActivity.CATEGORY_ID_EXTRA, -1L);
         categoryName = intent.getStringExtra(MainActivity.STRING_ID_EXTRA);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         setTitle(categoryName);
         mDbHelper = new LineDbHelper(this, LineDbContract.DATABASE_NAME, null, LineDbContract.DATABASE_VERSION);
 
