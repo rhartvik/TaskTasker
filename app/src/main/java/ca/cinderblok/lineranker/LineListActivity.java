@@ -29,7 +29,7 @@ public class LineListActivity extends AppCompatActivity implements NewEntryFragm
         setContentView(R.layout.activity_main);
 
         Intent intent = getIntent();
-        categoryId = intent.getLongExtra(MainActivity.CATEGORY_ID_EXTRA, -1);
+        categoryId = intent.getLongExtra(MainActivity.CATEGORY_ID_EXTRA, -1L);
         categoryName = intent.getStringExtra(MainActivity.STRING_ID_EXTRA);
         setTitle(categoryName);
         mDbHelper = new LineDbHelper(this, LineDbContract.DATABASE_NAME, null, LineDbContract.DATABASE_VERSION);
