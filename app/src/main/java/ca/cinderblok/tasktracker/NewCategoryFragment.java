@@ -22,7 +22,7 @@ public class NewCategoryFragment extends NewEntryFragment {
 
     @Override
     protected long add(String str){
-        return mDbHelper.InsertNewCategory(str);
+        return mDbHelper.InsertNewProject(str);
     }
 }
 

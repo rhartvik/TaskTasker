@@ -16,14 +16,14 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import ca.cinderblok.tasktracker.DAL.LineDbContract;
-import ca.cinderblok.tasktracker.DAL.LineDbHelper;
+import ca.cinderblok.tasktracker.DAL.TaskDbContract;
+import ca.cinderblok.tasktracker.DAL.TaskDbHelper;
 
 public class MainActivity extends AppCompatActivity implements NewEntryFragment.NewEntryDialogListener {
 
-    LineDbHelper mDbHelper;
-    public static String CATEGORY_ID_EXTRA = "cinderblok.ca.LINE_CATEGORY_ID";
-    public static String STRING_ID_EXTRA = "cinderblok.ca.LINE_CATEGORY_NAME";
+    TaskDbHelper mDbHelper;
+    public static String PROJECT_ID_EXTRA = "cinderblok.ca.TASK_PROJECT_ID";
+    public static String PROJECT_NAME_EXTRA = "cinderblok.ca.TASK_PROJECT_NAME";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +38,14 @@ public class MainActivity extends AppCompatActivity implements NewEntryFragment.
             public void onClick(View view) {
 
                 DialogFragment newFragment = new NewCategoryFragment();
-                newFragment.show(getSupportFragmentManager(), "addcategory");
+                newFragment.show(getSupportFragmentManager(), "addproject");
 
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
 
-        mDbHelper = new LineDbHelper(this, LineDbContract.DATABASE_NAME, null, LineDbContract.DATABASE_VERSION);
+        mDbHelper = new TaskDbHelper(this, TaskDbContract.DATABASE_NAME, null, TaskDbContract.DATABASE_VERSION);
 
         ListView list = (ListView) findViewById(R.id.listView);
 
@@ -53,11 +53,11 @@ public class MainActivity extends AppCompatActivity implements NewEntryFragment.
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Cursor c = (Cursor)parent.getItemAtPosition(position);
-                long categoryId = c.getLong(c.getColumnIndexOrThrow(LineDbContract.CategoryTable._ID));
-                Intent intent = new Intent(MainActivity.this, LineListActivity.class);
-                intent.putExtra(CATEGORY_ID_EXTRA, categoryId);
-                String categoryName = ((TextView) view.findViewById(R.id.categoryName)).getText().toString();
-                intent.putExtra(STRING_ID_EXTRA, categoryName);
+                long projectID = c.getLong(c.getColumnIndexOrThrow(TaskDbContract.ProjectTable._ID));
+                Intent intent = new Intent(MainActivity.this, TaskListActivity.class);
+                intent.putExtra(PROJECT_ID_EXTRA, projectID);
+                String projectName = ((TextView) view.findViewById(R.id.listItemName)).getText().toString();
+                intent.putExtra(PROJECT_NAME_EXTRA, projectName);
                 startActivity(intent);
             }
         });
@@ -71,11 +71,11 @@ public class MainActivity extends AppCompatActivity implements NewEntryFragment.
 
     private void RefreshList(){
         ListView categoryListView = (ListView) findViewById(R.id.listView);
-        Cursor categoryCursor = mDbHelper.GetCategories();
+        Cursor categoryCursor = mDbHelper.GetProjects();
         // Setup cursor adapter using cursor from last step
-        CategoryAdapter categoryCursorAdapter = new CategoryAdapter(this.getBaseContext(), categoryCursor, CursorAdapter.NO_SELECTION);
+        SimpleEnumerationAdapter projectCursorAdapter = new SimpleEnumerationAdapter(this.getBaseContext(), categoryCursor, CursorAdapter.NO_SELECTION);
         // Attach cursor adapter to the ListView
-        categoryListView.setAdapter(categoryCursorAdapter);
+        categoryListView.setAdapter(projectCursorAdapter);
     }
 
     @Override

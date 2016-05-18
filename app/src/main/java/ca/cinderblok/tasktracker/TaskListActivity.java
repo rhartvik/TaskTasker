@@ -12,15 +12,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
 
-import ca.cinderblok.tasktracker.DAL.LineDbContract;
-import ca.cinderblok.tasktracker.DAL.LineDbHelper;
+import ca.cinderblok.tasktracker.DAL.TaskDbContract;
+import ca.cinderblok.tasktracker.DAL.TaskDbHelper;
 
 /**
  * Created by rachelhartviksen on 2016-05-05.
  */
-public class LineListActivity extends AppCompatActivity implements NewEntryFragment.NewEntryDialogListener {
+public class TaskListActivity extends AppCompatActivity implements NewEntryFragment.NewEntryDialogListener {
 
-    LineDbHelper mDbHelper;
+    TaskDbHelper mDbHelper;
     long categoryId;
     String categoryName;
 
@@ -30,12 +30,12 @@ public class LineListActivity extends AppCompatActivity implements NewEntryFragm
         setContentView(R.layout.activity_main);
 
         Intent intent = getIntent();
-        categoryId = intent.getLongExtra(MainActivity.CATEGORY_ID_EXTRA, -1L);
-        categoryName = intent.getStringExtra(MainActivity.STRING_ID_EXTRA);
+        categoryId = intent.getLongExtra(MainActivity.PROJECT_ID_EXTRA, -1L);
+        categoryName = intent.getStringExtra(MainActivity.PROJECT_NAME_EXTRA);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle(categoryName);
-        mDbHelper = new LineDbHelper(this, LineDbContract.DATABASE_NAME, null, LineDbContract.DATABASE_VERSION);
+        mDbHelper = new TaskDbHelper(this, TaskDbContract.DATABASE_NAME, null, TaskDbContract.DATABASE_VERSION);
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -43,7 +43,7 @@ public class LineListActivity extends AppCompatActivity implements NewEntryFragm
             @Override
             public void onClick(View view) {
 
-                DialogFragment newFragment = new NewLineFragment();
+                DialogFragment newFragment = new NewTaskFragment();
                 Bundle bundle = new Bundle();
                 bundle.putLong("category", categoryId);
                 newFragment.setArguments(bundle);
@@ -64,8 +64,8 @@ public class LineListActivity extends AppCompatActivity implements NewEntryFragm
 
     private void RefreshList(){
         ListView lineListView = (ListView) findViewById(R.id.listView);
-        Cursor lineCursor = mDbHelper.GetLines(categoryId);
-        LineAdapter lineCursorAdapter = new LineAdapter(this.getBaseContext(), lineCursor, CursorAdapter.NO_SELECTION);
+        Cursor lineCursor = mDbHelper.GetTasks(categoryId);
+        TaskAdapter lineCursorAdapter = new TaskAdapter(this.getBaseContext(), lineCursor, CursorAdapter.NO_SELECTION);
         lineListView.setAdapter(lineCursorAdapter);
     }
 

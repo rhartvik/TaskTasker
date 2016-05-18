@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="ca.cinderblok.tasktracker.LineListActivity"
+            android:name=".TaskListActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

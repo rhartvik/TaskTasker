@@ -8,15 +8,15 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.widget.EditText;
 
-import ca.cinderblok.tasktracker.DAL.LineDbContract;
-import ca.cinderblok.tasktracker.DAL.LineDbHelper;
+import ca.cinderblok.tasktracker.DAL.TaskDbContract;
+import ca.cinderblok.tasktracker.DAL.TaskDbHelper;
 
 /**
  * Created by rachelhartviksen on 2016-05-03.
  */
 public abstract class NewEntryFragment extends DialogFragment {
 
-    protected LineDbHelper mDbHelper;
+    protected TaskDbHelper mDbHelper;
 
     protected abstract int getTitleStringId();
     protected abstract int getViewId();
@@ -52,7 +52,7 @@ public abstract class NewEntryFragment extends DialogFragment {
     @Override
     public void onStart() {
         super.onStart();
-        mDbHelper = new LineDbHelper(this.getContext(), LineDbContract.DATABASE_NAME, null, LineDbContract.DATABASE_VERSION);
+        mDbHelper = new TaskDbHelper(this.getContext(), TaskDbContract.DATABASE_NAME, null, TaskDbContract.DATABASE_VERSION);
     }
 
     @Override

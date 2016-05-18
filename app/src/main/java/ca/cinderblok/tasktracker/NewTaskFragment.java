@@ -7,7 +7,7 @@ import android.widget.DatePicker;
 /**
  * Created by rachelhartviksen on 2016-05-03.
  */
-public class NewLineFragment extends NewEntryFragment {
+public class NewTaskFragment extends NewEntryFragment {
 
     @Override
     protected int getTitleStringId(){
@@ -26,7 +26,7 @@ public class NewLineFragment extends NewEntryFragment {
 
     @Override
     protected long add(String str){
-        long categoryId = getArguments().getLong("category");
+        long projectId = getArguments().getLong("simple_enum_list_item");
         LayoutInflater inflater = LayoutInflater.from(getActivity().getBaseContext());
         View view = inflater.inflate(getViewId(), null);
 
@@ -39,7 +39,7 @@ public class NewLineFragment extends NewEntryFragment {
                 , datePicker.getMonth()
                 , datePicker.getDayOfMonth());
 
-        return mDbHelper.InsertNewLine(categoryId, str, dateString);
+        return mDbHelper.InsertNewTask(projectId, str, str, 0, 0, 0, 0, 0);
     }
 
 }
