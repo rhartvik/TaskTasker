@@ -1,4 +1,4 @@
-package ca.cinderblok.lineranker;
+package ca.cinderblok.tasktracker;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

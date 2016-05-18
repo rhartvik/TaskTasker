@@ -1,4 +1,4 @@
-package ca.cinderblok.lineranker;
+package ca.cinderblok.tasktracker;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import ca.cinderblok.lineranker.DAL.LineDbContract;
+import ca.cinderblok.tasktracker.DAL.LineDbContract;
 
 /**
  * Created by rachelhartviksen on 2016-05-05.

@@ -1,11 +1,8 @@
-package ca.cinderblok.lineranker;
+package ca.cinderblok.tasktracker;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.DatePicker;
-
-import java.util.Date;
 
 /**
  * Created by rachelhartviksen on 2016-05-03.

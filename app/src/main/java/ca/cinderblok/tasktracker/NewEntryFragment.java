@@ -1,21 +1,15 @@
-package ca.cinderblok.lineranker;
+package ca.cinderblok.tasktracker;
 
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
-import android.text.InputType;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.EditText;
 
-import java.util.Date;
-
-import ca.cinderblok.lineranker.DAL.LineDbContract;
-import ca.cinderblok.lineranker.DAL.LineDbHelper;
+import ca.cinderblok.tasktracker.DAL.LineDbContract;
+import ca.cinderblok.tasktracker.DAL.LineDbHelper;
 
 /**
  * Created by rachelhartviksen on 2016-05-03.

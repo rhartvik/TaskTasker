@@ -1,4 +1,4 @@
-package ca.cinderblok.lineranker;
+package ca.cinderblok.tasktracker;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -16,8 +16,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import ca.cinderblok.lineranker.DAL.LineDbContract;
-import ca.cinderblok.lineranker.DAL.LineDbHelper;
+import ca.cinderblok.tasktracker.DAL.LineDbContract;
+import ca.cinderblok.tasktracker.DAL.LineDbHelper;
 
 public class MainActivity extends AppCompatActivity implements NewEntryFragment.NewEntryDialogListener {
 
