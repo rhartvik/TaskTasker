@@ -7,7 +7,7 @@ public class NewCategoryFragment extends NewEntryFragment {
 
     @Override
     protected int getTitleStringId(){
-        return R.string.enter_category_name;
+        return R.string.enter_project_name;
     }
 
     @Override

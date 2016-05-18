@@ -11,7 +11,7 @@ public class NewTaskFragment extends NewEntryFragment {
 
     @Override
     protected int getTitleStringId(){
-        return R.string.enter_new_line;
+        return R.string.enter_task_title;
     }
 
     @Override
