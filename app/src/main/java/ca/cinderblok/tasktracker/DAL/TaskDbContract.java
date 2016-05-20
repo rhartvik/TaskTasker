@@ -13,7 +13,7 @@ public final class TaskDbContract {
 
     public static abstract class SimpleEnumerationTable implements BaseColumns {
 
-        public static final String TABLE_NAME = "project";
+        public static String TABLE_NAME;
         public static final String COLUMN_NAME_NAME = "name";
 
         public static final String[] FULL_PROJECTION = new String[] {
@@ -56,6 +56,9 @@ public final class TaskDbContract {
     }
 
     public static abstract class TaskTable implements BaseColumns {
+
+        public static final String TABLE_NAME = "task";
+
         // Mandatory Fields
 //        •	Title (Text)
 //        •	Description (Text)
@@ -64,7 +67,6 @@ public final class TaskDbContract {
 //        •	Status (Open, Resolved, Closed, Will Not Fix, Deffered)
 //        •	Priority ( Critical, High, Medium, Low)
 //        •	Sprint (One of Sprint)
-        public static final String TABLE_NAME = "task";
         public static final String COLUMN_NAME_TITLE = "title";
         public static final String COLUMN_NAME_DESCRIPTION = "description";
         public static final String COLUMN_NAME_REPORTER_ID = "reporterid";
