@@ -43,11 +43,14 @@ public class TaskListActivity extends AppCompatActivity implements NewEntryFragm
             @Override
             public void onClick(View view) {
 
-                DialogFragment newFragment = new NewTaskFragment();
-                Bundle bundle = new Bundle();
-                bundle.putLong("category", categoryId);
-                newFragment.setArguments(bundle);
-                newFragment.show(getSupportFragmentManager(), "addline");
+//                DialogFragment newFragment = new NewTaskFragment();
+//                Bundle bundle = new Bundle();
+//                bundle.putLong("category", categoryId);
+//                newFragment.setArguments(bundle);
+//                newFragment.show(getSupportFragmentManager(), "addline");
+
+                Intent intentToGoToCreateTaskActivity = new Intent();
+                // Google 'how to change activities android'
 
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();

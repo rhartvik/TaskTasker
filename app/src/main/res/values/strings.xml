@@ -6,4 +6,5 @@
     <string name="enter_task_title">Enter Task Title</string>
     <string name="enter_project_name">Enter Project Name</string>
     <string name="date_format">%1$04d-%2$02d-%3$02d</string>
+    <string name="title_activity_create_task">CreateTaskActivity</string>
 </resources>

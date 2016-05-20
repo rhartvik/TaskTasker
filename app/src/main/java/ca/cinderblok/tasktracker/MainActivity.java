@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements NewEntryFragment.
 
         mDbHelper = new TaskDbHelper(this, TaskDbContract.DATABASE_NAME, null, TaskDbContract.DATABASE_VERSION);
 
+        mDbHelper.SeedData();
+
         ListView list = (ListView) findViewById(R.id.listView);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
