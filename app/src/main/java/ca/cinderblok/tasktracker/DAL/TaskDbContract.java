@@ -13,7 +13,6 @@ public final class TaskDbContract {
 
     public static abstract class SimpleEnumerationTable implements BaseColumns {
 
-        public static String TABLE_NAME;
         public static final String COLUMN_NAME_NAME = "name";
 
         public static final String[] FULL_PROJECTION = new String[] {
@@ -21,9 +20,6 @@ public final class TaskDbContract {
                 , COLUMN_NAME_NAME
         };
 
-        public static final String SQL_CREATE = "CREATE TABLE " + TABLE_NAME + " ("
-                + _ID + " integer primary key autoincrement not null, "
-                + COLUMN_NAME_NAME + " text)";
 
         public static final String SQL_DELETE = "DROP TABLE IF EXISTS " + ProjectTable.TABLE_NAME;
 
@@ -33,26 +29,41 @@ public final class TaskDbContract {
     public static abstract class SprintTable extends SimpleEnumerationTable {
 
         public static final String TABLE_NAME = "sprint";
+        public static final String SQL_CREATE = "CREATE TABLE " + TABLE_NAME + " ("
+                + _ID + " integer primary key autoincrement not null, "
+                + COLUMN_NAME_NAME + " text)";
     }
 
     public static abstract class ProjectTable extends SimpleEnumerationTable {
 
         public static final String TABLE_NAME = "project";
+        public static final String SQL_CREATE = "CREATE TABLE " + TABLE_NAME + " ("
+                + _ID + " integer primary key autoincrement not null, "
+                + COLUMN_NAME_NAME + " text)";
     }
 
     public static abstract class StatusTable extends SimpleEnumerationTable {
 
         public static final String TABLE_NAME = "status";
+        public static final String SQL_CREATE = "CREATE TABLE " + TABLE_NAME + " ("
+                + _ID + " integer primary key autoincrement not null, "
+                + COLUMN_NAME_NAME + " text)";
     }
 
     public static abstract class UserTable extends SimpleEnumerationTable {
 
         public static final String TABLE_NAME = "user";
+        public static final String SQL_CREATE = "CREATE TABLE " + TABLE_NAME + " ("
+                + _ID + " integer primary key autoincrement not null, "
+                + COLUMN_NAME_NAME + " text)";
     }
 
     public static abstract class PriorityTable extends SimpleEnumerationTable {
 
         public static final String TABLE_NAME = "priority";
+        public static final String SQL_CREATE = "CREATE TABLE " + TABLE_NAME + " ("
+                + _ID + " integer primary key autoincrement not null, "
+                + COLUMN_NAME_NAME + " text)";
     }
 
     public static abstract class TaskTable implements BaseColumns {
