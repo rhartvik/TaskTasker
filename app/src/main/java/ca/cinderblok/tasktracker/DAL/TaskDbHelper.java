@@ -35,8 +35,33 @@ public class TaskDbHelper extends SQLiteOpenHelper{
 
         sqLiteDatabase.execSQL(TaskDbContract.TaskTable.SQL_CREATE);
         Log.d(TAG, "onCreated sql: " + TaskDbContract.TaskTable.SQL_CREATE);
+
     }
 
+    public void SeedData() {
+
+        long userIdRachel = InsertNewUser("Rachel");
+
+        long statusIdDone = InsertStatus("Done");
+        long statusIdOpen = InsertStatus("Open");
+        long statusIdResolved = InsertStatus("Resolved");
+
+        long priorityIdHigh = InsertPriority("High");
+
+        long sprintIdLastSprint = InsertSprint("Early May");
+
+        long gardenProjectId = InsertNewProject("Garden");
+
+        InsertNewTask(
+                gardenProjectId
+                , "Add Plastic Cover"
+                , "We need to trap moisture and heat"
+                , userIdRachel
+                , userIdRachel
+                , statusIdDone
+                , priorityIdHigh
+                , sprintIdLastSprint);
+    }
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
@@ -52,10 +77,37 @@ public class TaskDbHelper extends SQLiteOpenHelper{
     public long InsertNewProject(String str) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(TaskDbContract.ProjectTable.COLUMN_NAME_NAME, str);
+        values.put(TaskDbContract.SimpleEnumerationTable.COLUMN_NAME_NAME, str);
         return db.insert(TaskDbContract.ProjectTable.TABLE_NAME, null, values);
     }
 
+    public long InsertNewUser(String str) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(TaskDbContract.SimpleEnumerationTable.COLUMN_NAME_NAME, str);
+        return db.insert(TaskDbContract.UserTable.TABLE_NAME, null, values);
+    }
+
+    public long InsertStatus(String str) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(TaskDbContract.SimpleEnumerationTable.COLUMN_NAME_NAME, str);
+        return db.insert(TaskDbContract.StatusTable.TABLE_NAME, null, values);
+    }
+
+    public long InsertPriority(String str) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(TaskDbContract.SimpleEnumerationTable.COLUMN_NAME_NAME, str);
+        return db.insert(TaskDbContract.PriorityTable.TABLE_NAME, null, values);
+    }
+
+    public long InsertSprint(String str) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(TaskDbContract.SimpleEnumerationTable.COLUMN_NAME_NAME, str);
+        return db.insert(TaskDbContract.SprintTable.TABLE_NAME, null, values);
+    }
     public long InsertNewTask(
             long projectId
             , String title
