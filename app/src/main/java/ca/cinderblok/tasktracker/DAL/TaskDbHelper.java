@@ -21,6 +21,18 @@ public class TaskDbHelper extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(TaskDbContract.ProjectTable.SQL_CREATE);
         Log.d(TAG, "onCreated sql: " + TaskDbContract.ProjectTable.SQL_CREATE);
 
+        sqLiteDatabase.execSQL(TaskDbContract.SprintTable.SQL_CREATE);
+        Log.d(TAG, "onCreated sql: " + TaskDbContract.SprintTable.SQL_CREATE);
+
+        sqLiteDatabase.execSQL(TaskDbContract.StatusTable.SQL_CREATE);
+        Log.d(TAG, "onCreated sql: " + TaskDbContract.StatusTable.SQL_CREATE);
+
+        sqLiteDatabase.execSQL(TaskDbContract.UserTable.SQL_CREATE);
+        Log.d(TAG, "onCreated sql: " + TaskDbContract.UserTable.SQL_CREATE);
+
+        sqLiteDatabase.execSQL(TaskDbContract.PriorityTable.SQL_CREATE);
+        Log.d(TAG, "onCreated sql: " + TaskDbContract.PriorityTable.SQL_CREATE);
+
         sqLiteDatabase.execSQL(TaskDbContract.TaskTable.SQL_CREATE);
         Log.d(TAG, "onCreated sql: " + TaskDbContract.TaskTable.SQL_CREATE);
     }
